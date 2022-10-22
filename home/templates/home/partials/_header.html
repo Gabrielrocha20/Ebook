@@ -1,0 +1,33 @@
+{% load static %}
+<header>
+    <nav>
+        <div class="container">
+            <a href="{% url 'home:home' %}">
+                <img src="{% static 'img/logoz.png' %}" alt="Logo">
+            </a>
+            <form action="{% url 'home:search'%}" method="GET">
+                <div class="search search-wrapper">
+                    <select class="category-box" value="" name="categoria">
+                        <option value="0">Todos</option>
+                        {% for categoria in categorias %}
+                        <option value="{{categoria.id}}">{{categoria|title}}</option>
+                        {% endfor %}
+                    </select>
+                    <input class="search search-box" name="q" value="" type="search" placeholder="Pesquise aqui">
+                    <button class="search search-button"><i class="fa-solid fa-magnifying-glass"></i></button>
+                </div><!--search-wrapper-->
+            </form>
+            <ul>
+                <li><a href="{% url 'home:home' %}" class="atualPage">Home</a></li>
+                <li><a href="#Products">Destaque</a></li>
+                <li><a href="#itens">Produtos</a></li>
+                {% if user.is_authenticated %}
+                <li><a href="{% url 'home:logout' %}">Sair</a></li>
+                {% else %}
+                <li><a href="{% url 'home:login' %}">Entrar</a></li>
+                {% endif %}
+            </ul>
+        </div><!--container--><div class="clear"></div>
+    </nav>
+    <div ><img class="backgroundHeader" src="{% static "img/banner.jpg" %}" alt=""></div>
+</header>

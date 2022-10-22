@@ -1,0 +1,33 @@
+{% extends 'home/pages/base.html' %}
+{% load static %}
+
+{% block title %}
+Faça seu log-in
+{% endblock title %}
+
+{% block content %}
+<div class="left-login">
+    <div class="h1-left-login"> 
+        <h1>Faça Log-in<br>E entre para o nosso time</h1>
+    </div><!--h1-left-login-->
+    <img src="{% static 'svg/log-animate.svg' %}" alt="gif">
+</div><!--left-->
+<div class="right-login">
+    <div class="card-login">
+        {% include 'home/partials/_messages.html' %}
+        <h1>Login</h1>
+        <form class="textfield" action="{% url 'home:login' %}" method="POST">{% csrf_token %}
+            <div class="textfield">
+                <label class="label-login" for="usuario">Usuário</label>
+                <input type="text" name="usuario" placeholder="Usuário">
+            </div><!--textfield-->
+            <div class="textfield">
+                <label class="label-login" for="senha">Senha</label>
+                <input class="input-login" name="senha" type="password" placeholder="Senha">
+            </div><!--textfield-->
+            <button class="btn-login">Entrar</button>
+        </form>
+        <a href="{% url 'home:cadastrar' %}" class="cadastrese-login">Cadastre-se</a>  
+    </div><!--card-login-->
+</div><!--right-->
+{% endblock content %}

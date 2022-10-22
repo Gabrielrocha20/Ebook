@@ -1,0 +1,42 @@
+{% extends 'home/pages/base.html' %}
+{% load static %}
+
+{% block title %}
+Faça seu log-in
+{% endblock title %}
+        
+{% block content %}
+    <div class="left-login">
+        <div class="h1-left-login"> 
+            <h1>Cadastre-se<br>E entre para o nosso time</h1>
+        </div><!--h1-left-login-->
+        <img src="{% static 'svg/cad-animate.svg' %}" alt="gif">
+    </div><!--left-->
+    <div class="right-login">
+        <div class="card-login">
+            {% include 'home/partials/_messages.html' %}
+            <h1>Cadastre-se</h1>
+            <form class="textfield" action="{% url 'home:cadastrar' %}" method="POST">{% csrf_token %}
+                <div class="textfield">
+                    <label class="label-login" for="usuario">Usuário</label>
+                    <input type="text" name="usuario" placeholder="Usuário" {% if is_verificado %} value="{{username}}" {% endif %} required>
+                </div><!--textfield-->
+                <div class="textfield">
+                    <label class="label-login" for="usuario">E-mail</label>
+                    <input type="email" name="email" placeholder="E-mail" {% if is_verificado %} value="{{email}}" {% endif %} required>
+                </div><!--textfield-->
+                <div class="textfield">
+                    <label class="label-login" for="usuario">Token</label>
+                    <input type="text" name="token" placeholder="Token">
+                    <button class="btn-token" onclick="Token()" id="btn_token" name="btn_token" value="off">Enviar</button>
+                </div><!--textfield-->
+                <div class="textfield">
+                    <label class="label-login" for="senha">Senha</label>
+                    <input class="input-login" name="senha" type="password" placeholder="Senha" {% if is_verificado %} value="{{senha}}" {% endif %} required>
+                </div><!--textfield-->
+                <button class="btn-login">Criar conta</button>
+            </form>
+            <a href="{% url 'home:login' %}" class="cadastrese-login">Já possui uma conta?</a>
+        </div><!--card-login-->
+    </div><!--right-->
+{% endblock content %}

@@ -1,0 +1,56 @@
+{% load static %}
+<!doctype html>
+<html lang="pt-br">
+    <head>
+        <title>{{title|title}}</title>
+        <meta charset="utf-8">
+        <link rel="icon" href="{% static '/img/logoz.png' %}">
+        <link rel="stylesheet"      type="text/css" href="{% static 'css/normalize.css' %}">
+        <link rel="stylesheet"      type="text/css" href="{% static 'css/style.css' %}">
+        <meta name="viewport"       content="width=device-width, initial-scale=1.0">
+        <meta name="author"         content="autor do site">
+        <meta name="keywords"       content="palavras-separadas,por,virgula">
+        <meta name="description"    content="descrição do site">
+        <!-- fontaawesome -->
+        <script src="https://kit.fontawesome.com/944a9ba2fe.js" crossorigin="anonymous"></script>
+        <!--
+        -->
+    </head>
+    <body>
+        {% include 'home/partials/_header.html' %}
+        <main>
+            <section id="Products">
+                <div class="container">
+                    <h2 class="sectionTitle">{{categoria_nome|title}}</h2>
+                    <div class="itens">
+                        {% for produto in produtos %}
+                            <div class="product-box">
+                                <img src="{{produto.imagem.url}}" alt="">
+                                <div class="desc">
+                                    <h2 class="title">{{produto.nome|title}}</h2>
+                                    {% if produto.preco_marketing_promocional == 0 %}
+                                        <h5 class="pricer">Preço: 
+                                            <span class="price">R$ {{produto.preco_marketing}}
+                                        </h5>
+                                    {% else %}
+                                        <h5 class="pricer">Preço: 
+                                            <span class="price">R$ {{produto.preco_marketing_promocional}}
+                                            <span class="oldPrice">(R$ {{produto.preco_marketing}})</span></span>
+                                        </h5>
+                                    {% endif %}
+                                    <p  class="body">{{produto.descricao_curta|title}}</p>
+                                    <a href="{{produto.url_produto}}"><button>Saiba mais</button></a>
+                                </div><!--desc-->
+                            </div><!--product-box-->
+                        {% endfor %}
+                        
+                    </div><!--itens-->
+                    
+                </div><!--container-->
+            </section><!--id Products-->
+        </main>
+        {% include 'home/partials/pagination.html' %}
+        
+        {% include 'home/partials/_footer.html' %}
+    </body>
+</html>

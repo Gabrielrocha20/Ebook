@@ -1,0 +1,28 @@
+{% load static %}
+<!doctype html>
+<html lang="pt-br">
+    <head>
+        <title>{% block title %}{% endblock title %}</title>
+        <meta charset="utf-8">
+        <link rel="stylesheet"      type="text/css" href="{% static 'css/cadastro.css' %}">
+        <link rel="stylesheet"      type="text/css" href="{% static 'css/normalize.css' %}">
+        <link rel="stylesheet"      type="text/css" href="{% static 'css/style.css' %}">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>   
+        <script src="https://kit.fontawesome.com/944a9ba2fe.js" crossorigin="anonymous"></script>
+        <meta name="viewport"       content="width=device-width, initial-scale=1.0">
+        <meta name="author"         content="autor do site">
+        <meta name="keywords"       content="palavras-separadas,por,virgula">
+        <meta name="description"    content="descrição do site">
+    </head>
+    <body>
+        <main id="principal">
+            
+            {% block content %}
+            
+            {% endblock content %}
+        </main>
+    </body>
+    <script src="{% static 'js/script.js' %}"></script>
+</html>
